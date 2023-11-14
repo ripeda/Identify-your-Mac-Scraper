@@ -16,6 +16,7 @@ from pathlib import Path
 
 STORAGE_DIRECTORY: str = "models"
 BASE_URL:          str = "https://support.apple.com"
+LOCALIZATION:      str = "en-us"
 
 URLS: dict = {
     "MacBook":     "HT201608",
@@ -37,7 +38,7 @@ class FetchModels:
         print(f"Fetching {model} models...")
 
         self.model = model
-        self.url = f"{BASE_URL}/{URLS[model]}"
+        self.url = f"{BASE_URL}/{LOCALIZATION}{URLS[model]}"
 
 
     def results(self) -> dict:

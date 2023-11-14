@@ -14,10 +14,23 @@ python3 scrape.py
 python3 scrape.py 'MacBook' 'MacBook Air'
 ```
 
+
 ## Notes
 
-- Apple's site is incomplete, generally stops around 2009 for Mac models
-   - May also be missing models, ex. `MacBook5,1` is missing while `MacBook5,2` is present
+- Apple's site is incomplete, generally stops around 2009 for Mac models.
+   - May also be missing models, ex. `MacBook5,1` is missing while `MacBook5,2` is present.
+- iMac Pro is part of the iMac family, thus is not listed separately.
+- Current URLs indexed:
+  - [MacBook - HT201608](https://support.apple.com/HT201608)
+  - [MacBook Air - HT201862](https://support.apple.com/HT201862)
+  - [MacBook Pro - HT201300](https://support.apple.com/HT201300)
+  - [iMac - HT201634](https://support.apple.com/HT201634)
+  - [Mac Pro - HT202888](https://support.apple.com/HT202888)
+  - [Mac Studio - HT213073](https://support.apple.com/HT213073)
+  - [Mac mini - HT201894](https://support.apple.com/HT201894)
+- As noted by Mike Lynn from Apple, localization may take some time to update. US English will always be the most up-to-date.
+  - Project currently defaults to `en-us`, edit scrape.py's `LOCALIZATION` variable to change this.
+
 
 ## Sample
 
