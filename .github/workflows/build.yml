@@ -22,7 +22,7 @@ jobs:
       - name: Install dependencies
         run: pip3 install -r requirements.txt
 
-      - name: Build Application
+      - name: Scrape Sites
         run: python3 scrape.py
 
       - name: Upload (artifact)
