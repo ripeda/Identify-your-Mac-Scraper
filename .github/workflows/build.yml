@@ -1,0 +1,39 @@
+name: CI - Fetch Models
+
+on:
+  push:
+  workflow_dispatch:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    name: Build
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip3 install -r requirements.txt
+
+      - name: Build Application
+        run: python3 scrape.py
+
+      - name: Upload (artifact)
+        uses: actions/upload-artifact@v2
+        with:
+          name: models
+          path: models
+
+      - name: Upload (release)
+        if: github.event_name == 'release'
+        uses: svenstaro/upload-release-action@1beeb572c19a9242f4361f4cee78f8e0d9aec5df
+        with:
+          file: models/*
+          file_glob: true
