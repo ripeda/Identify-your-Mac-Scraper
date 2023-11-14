@@ -20,6 +20,9 @@ python3 scrape.py 'MacBook' 'MacBook Air'
 - Apple's site is incomplete, generally stops around 2009 for Mac models.
    - May also be missing models, ex. `MacBook5,1` is missing while `MacBook5,2` is present.
 - iMac Pro is part of the iMac family, thus is not listed separately.
+- Some models, ex. `MacBookPro11,3`, may appear in multiple years with different model names.
+  - 2013: `MacBook Pro (Retina, 15-inch, Late 2013)`
+  - 2014: `MacBook Pro (Retina, 15-inch, Mid 2014)`
 - Current URLs indexed:
   - [MacBook - HT201608](https://support.apple.com/HT201608)
   - [MacBook Air - HT201862](https://support.apple.com/HT201862)
