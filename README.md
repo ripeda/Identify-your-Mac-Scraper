@@ -28,7 +28,7 @@ python3 scrape.py 'MacBook' 'MacBook Air'
   - [Mac Pro - HT202888](https://support.apple.com/HT202888)
   - [Mac Studio - HT213073](https://support.apple.com/HT213073)
   - [Mac mini - HT201894](https://support.apple.com/HT201894)
-- As noted by Mike Lynn from Apple, localization may take some time to update. US English will always be the most up-to-date.
+- As noted by Eric Boyd from Apple, localization may 2 weeks to update. US English will always be the most up-to-date.
   - Project currently defaults to `en-us`, edit scrape.py's `LOCALIZATION` variable to change this.
 
 
