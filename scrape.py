@@ -13,7 +13,7 @@ import requests
 from bs4 import BeautifulSoup
 from pathlib import Path
 
-PROJECT_VERSION:   str = "1.0.0"
+PROJECT_VERSION:   str = "1.1.0"
 STORAGE_DIRECTORY: str = "models"
 BASE_URL:          str = "https://support.apple.com"
 LOCALIZATION:      str = "en-us"
