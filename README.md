@@ -29,7 +29,7 @@ python3 scrape.py 'MacBook' 'MacBook Air'
                 "MacBook (Retina, 12-inch, 2017)"
             ]
         },
-        ...
+        "..."
     },
     "MacBook Air": {
         "2023": {
@@ -37,7 +37,7 @@ python3 scrape.py 'MacBook' 'MacBook Air'
                 "MacBook Air (15-inch, M2, 2023)"
             ]
         },
-        ...
+        "..."
     },
     "MacBook Pro": {
         "2023": {
@@ -47,9 +47,9 @@ python3 scrape.py 'MacBook' 'MacBook Air'
             "Mac15,6": [
                 "MacBook Pro (14-inch, Nov 2023)"
             ],
-            ...
+            "..."
         },
-        ...
+        "..."
     },
     "iMac": {
         "2023": {
@@ -60,7 +60,7 @@ python3 scrape.py 'MacBook' 'MacBook Air'
                 "iMac (24-inch, 2023)"
             ]
         },
-        ...
+        "..."
     },
     "Mac Pro": {
         "2023": {
@@ -69,7 +69,7 @@ python3 scrape.py 'MacBook' 'MacBook Air'
                 "Mac Pro (Rack, 2023)"
             ]
         },
-        ...
+        "..."
     },
     "Mac Studio": {
         "2023": {
@@ -80,7 +80,7 @@ python3 scrape.py 'MacBook' 'MacBook Air'
                 "Mac Studio (2023)"
             ]
         },
-        ...
+        "..."
     },
     "Mac mini": {
         "2023": {
@@ -91,7 +91,7 @@ python3 scrape.py 'MacBook' 'MacBook Air'
                 "Mac mini (2023)"
             ]
         },
-        ...
+        "..."
     }
 }
 ```
