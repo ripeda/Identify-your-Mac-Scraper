@@ -30,6 +30,7 @@ python3 scrape.py 'MacBook' 'MacBook Air'
 - Some models, ex. `MacBookPro11,3`, may appear in multiple years with different model names.
   - 2013: `MacBook Pro (Retina, 15-inch, Late 2013)`
   - 2014: `MacBook Pro (Retina, 15-inch, Mid 2014)`
+- For the 2023 MacBook Air, Mac15,2 is a typo (should be Mac15,12)
 - Current URLs indexed:
   - [MacBook - HT201608](https://support.apple.com/HT201608)
   - [MacBook Air - HT201862](https://support.apple.com/HT201862)

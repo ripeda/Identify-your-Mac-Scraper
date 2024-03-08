@@ -13,7 +13,7 @@ import requests
 from bs4 import BeautifulSoup
 from pathlib import Path
 
-PROJECT_VERSION:   str = "1.1.0"
+PROJECT_VERSION:   str = "1.2.0"
 STORAGE_DIRECTORY: str = "models"
 BASE_URL:          str = "https://support.apple.com"
 LOCALIZATION:      str = "en-us"
@@ -95,33 +95,44 @@ class FetchModels:
             raise Exception(f"Error fetching {self.url}")
 
         soup = BeautifulSoup(response.text, "html.parser")
+        if self.model == "MacBook Air":
+            return self._fetch_air(soup)
 
         header = "h2" if self.model != "MacBook" else "h3"
 
         # Every header is the year
         for year in soup.find_all(header):
+            try:
+                int(year.text)
+            except:
+                continue
 
-            for div in year.find_next_siblings("div"):
+            for sibling in year.find_next_siblings("p"):
 
-                # Can be multiple strong's
-                for strong in div.find_all("strong"):
-                    model_name = strong.text.strip()
+                # Separate into each model
+                for model in sibling.find_all("b"):
+                    model_name = model.text.strip()
+
+                    # If the year is not in the model's name, we've gone too far
+                    if year.text not in model_name:
+                        break
 
                     if model_name == "":
                         continue
 
                     model_identifiers = ""
-                    description = ""
 
-                    # Next few lines are the model identifier
-                    # Make sure to include current line
-                    description += strong.next_sibling.text
-                    for br in strong.find_next_siblings("br"):
-                        description += br.next_sibling
+                    # Grab the next sibling of 'sibling'
+                    _sibling = sibling.find_next_sibling("p")
+                    while True:
+                        if _sibling is None:
+                            break
 
-                    for line in description.split("\n"):
-                        if "Model Identifier:" in line:
-                            model_identifiers = line.split(":")[1].strip()
+                        if "Model Identifier:" in _sibling.text:
+                            model_identifiers = _sibling.text.split(":")[1].strip()
+                            break
+
+                        _sibling = _sibling.find_next_sibling("p")
 
                     # Clean
                     model_identifiers = self._clean(model_identifiers)
@@ -137,6 +148,61 @@ class FetchModels:
                             models[year.text][model_identifier].append(model_name)
 
                         print(f"  {year.text} - {model_identifier} - {model_name}")
+
+        return models
+
+
+    def _fetch_air(self, soup: BeautifulSoup) -> dict:
+        """
+        Apple has a different structure for the MacBook Air...
+        """
+
+        models = {}
+
+        # Every header is a model
+        for model in soup.find_all("h2"):
+            model_name = model.text.strip()
+
+            model_identifiers = ""
+            year = ""
+
+            # Grab the next sibling of 'sibling'
+            _sibling = model.find_next_sibling("p")
+            while True:
+                if _sibling is None:
+                    break
+
+                if "Model Identifier:" in _sibling.text:
+                    model_identifiers = _sibling.text.split(":")[1].strip()
+
+                if "Year introduced:" in _sibling.text:
+                    year = _sibling.text.split(":")[1].strip()
+
+                if model_identifiers and year:
+                    break
+
+                _sibling = _sibling.find_next_sibling("p")
+
+            # Clean
+            model_identifiers = self._clean(model_identifiers)
+            year = self._clean(year)[0]
+
+            try:
+                int(year)
+            except:
+                continue
+
+            # Add to models dict
+            if year not in models:
+                models[year] = {}
+
+            for model_identifier in model_identifiers:
+                if model_identifier not in models[year]:
+                    models[year][model_identifier] = [model_name]
+                else:
+                    models[year][model_identifier].append(model_name)
+
+                print(f"  {year} - {model_identifier} - {model_name}")
 
         return models
 
