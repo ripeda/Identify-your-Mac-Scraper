@@ -1,5 +1,7 @@
 # Identify your Mac Scraper
 
+## 1.2.0
+
 ## 1.1.0
 - CI: Switch to `svenstaro/upload-release-action@v2`
 - Rewrite to handle Apple's new site format
